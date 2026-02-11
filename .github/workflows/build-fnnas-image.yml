@@ -12,13 +12,12 @@ on:
       fnnas_base_version:
         description: "Select fnnas base image version"
         required: false
-        default: "amlogic_488"
+        default: "amlogic_580"
         type: choice
         options:
-          - allwinner_489
-          - amlogic_488
-          - rockchip_485
-          - rockchip_484
+          - allwinner_619
+          - amlogic_580
+          - rockchip_583
       fnnas_board:
         description: "Select fnnas device board"
         required: false
