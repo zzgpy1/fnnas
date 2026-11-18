@@ -217,6 +217,7 @@ init_var
 # Check if root filesystem auto-resize is disabled
 [[ "${rootfs_resize}" == "yes" ]] || {
     echo -e "${INFO} Root filesystem auto-resize is disabled. Exiting."
+    disable_service
     exit 0
 }
 # Check disk and partition info

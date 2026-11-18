@@ -70,7 +70,7 @@ check_dependencies() {
     export DEBIAN_FRONTEND=noninteractive
 
     # Define necessary packages
-    necessary_packages=("xz-utils" "zstd" "gzip" "zip" "tar" "git" "u-boot-tools" "initramfs-tools" "grub2-common")
+    necessary_packages=("xz-utils" "zstd" "gzip" "zip" "tar" "git" "u-boot-tools" "initramfs-tools" "grub2-common" "parted" "btrfs-progs" "e2fsprogs" "util-linux")
 
     # Fix potential apt lock or list issues in chroot
     mkdir -p /var/lib/apt/lists/partial

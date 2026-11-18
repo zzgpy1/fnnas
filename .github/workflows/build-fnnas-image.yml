@@ -36,11 +36,13 @@ on:
           - a311d-oes
           - alark35-3500
           - anas3035
+          - ai3399-c
           - aio-3399b
           - aio-3399c
           - aio-3399c-ai
           - bdkj-bd-one
           - bdy-g18-pro
+          - bdy-g98
           - beikeyun
           - boca-tcn100
           - boca-tcn200
@@ -60,6 +62,7 @@ on:
           - eaidk-610
           - easepi-a2
           - easepi-r2
+          - elfboard-elf2
           - emb3531
           - fine3399
           - firefly-itx-3588j
@@ -70,6 +73,8 @@ on:
           - gea-6319
           - gzpeite-p01
           - h28k
+          - h339pc
+          - h618-ai-douhe
           - h618-devboard
           - h66k
           - h68k
@@ -77,13 +82,16 @@ on:
           - h88k
           - h88k-v3
           - h96-max-m2
+          - hd9901
           - hk1-rbox-k8s
+          - houzzkit-f1
           - hs530r
           - ht2
           - hugsun-x99
           - indiedroid-nova
           - ipc-r
           - jp-tvbox
+          - kickpi-k11c-v12
           - king3399
           - kylin3399
           - lckfb-tspi
@@ -92,13 +100,16 @@ on:
           - lubancat-1
           - lubancat-2
           - lubancat-4
+          - lubancat-5
           - lx-r3s
           - lyt-t68m
           - lz-d3568
           - lz-d3588
           - lz-k3568
+          - lzk4
           - md1000
           - mrkaio-m68s
+          - mytv-net1
           - nanopc-t4
           - nanopc-t6
           - nanopi-m5
@@ -113,14 +124,17 @@ on:
           - orangepi-5b
           - orangepi-zero3
           - painet-p3
+          - painet-p5
           - panther-x2
           - photonicat
+          - quarkpi-ca2
           - r66s
           - r68s
           - renegade-rk3328
           - rk3318-box
           - roceos-k40pro
           - rock-5-itx
+          - rock-3a
           - rock-3b
           - rock-3c
           - rock5b
@@ -152,6 +166,7 @@ on:
           - s905l3b-e900v22d
           - s905l3b-e900v22e
           - s905l3b-ip103h
+          - s905l3b-m302a
           - s905l3b-rg020et-ca
           - s905l3b-unt403a
           - s905lb-ipbs9505
@@ -169,9 +184,11 @@ on:
           - s905x-tbee
           - s905x-tx9
           - s905x2
+          - s905x2-b860h-v5
           - s905x2-km3
           - s905x2-x96max-2g
           - s905x2-hg680fj
+          - s905x2-w103d
           - s905x3
           - s905x3-2101
           - s905x3-a100
@@ -189,6 +206,7 @@ on:
           - s905x3-ugoosx3
           - s905x3-whale
           - s905x3-x88-pro-x3
+          - s905x3-yzd-s18
           - s905x3-x96air
           - s905x3-x96air-gb
           - s905x3-x96max
@@ -224,11 +242,14 @@ on:
           - sv-33a6x-vpu
           - swan1-w28
           - sw799
+          - sz3390
           - taram
           - tanix-tx6
           - tb-ls3399
           - tn3399
+          - torder-r10d
           - tpm312
+          - tps781
           - tqc-a01
           - tvi3315a
           - vontar-h618
@@ -236,12 +257,21 @@ on:
           - wocyber-a3
           - wxy-oect
           - wxy-oect-mod
+          - x88pro13
           - x88pro20
+          - x96-max-plus-ultra
           - x98h
+          - x98h-100mb
           - xiaobao
+          - xingyicloud
+          - youyeetoo-r1-v3
+          - youyeetoo-yy3568
+          - youyeetoo-yy3588
           - yskj
+          - z93a
           - zcube1-max
           - zk-r39a
+          - ztl-a568
           - zysj
       kernel_repo:
         description: "Set fnnas kernel repository"
@@ -263,6 +293,10 @@ on:
         required: false
         default: true
         type: boolean
+      fnnas_size:
+        description: "Set boot/rootfs size(MiB)"
+        required: false
+        default: "512/4096"
       rootfs_expand:
         description: "Set rootfs expansion size(GiB)"
         required: false
@@ -458,6 +492,7 @@ jobs:
           kernel_repo: ${{ inputs.kernel_repo }}
           rootfs_expand: ${{ inputs.rootfs_expand }}
           builder_name: ${{ inputs.builder_name }}
+          fnnas_size: ${{ inputs.fnnas_size }}
 
       - name: Upload packaged FnNAS to Release
         uses: ophub/upload-to-releases@main

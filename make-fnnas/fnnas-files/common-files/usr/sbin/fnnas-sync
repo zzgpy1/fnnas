@@ -106,6 +106,24 @@ sync_config() {
     [[ "${?}" -ne "0" ]] && error_msg "Failed to sync service scripts to [ ${sbin_path} ]."
     chmod +x ${sbin_path}/fnnas-*
 
+    # Sync whitelisted etc files (fixes such as the resize-rootfs ExecStart override
+    # can't reach deployed devices through /usr/sbin alone)
+    echo -e "${STEPS} Syncing etc service files..."
+    etc_files=(
+        "etc/custom_service/start_service.sh"
+        "etc/systemd/system/resize-rootfs.service"
+        "etc/systemd/system/resize-rootfs.service.d/override.conf"
+        "etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf"
+    )
+    for etc_file in "${etc_files[@]}"; do
+        [[ -f "${git_tmp_path}/${script_dir}/common-files/${etc_file}" ]] || continue
+        mkdir -p "/$(dirname "${etc_file}")"
+        cp -af --no-preserve=ownership "${git_tmp_path}/${script_dir}/common-files/${etc_file}" "/${etc_file}"
+        echo -e "${INFO} Synced [ /${etc_file} ]"
+    done
+    chmod +x /etc/custom_service/start_service.sh 2>/dev/null
+    systemctl daemon-reload >/dev/null 2>&1
+
     # Clean up temporary files
     rm -rf ${git_tmp_path} 2>/dev/null
 
